@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Body Posture Tracker</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Body Posture Tracker</h1>
+
+      <div class="control-panel">
+        <div class="controls">
+          <button id="startStopBtn" class="btn">Start</button>
+
+          <div class="exercise-selector">
+            <label for="exerciseType">Exercise:</label>
+            <select id="exerciseType">
+              <option value="hand_raise">Hand Raise</option>
+              <option value="hand_curl">Hand Curl</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="status">
+          <span id="angleLabel" class="status-label">Angle: Not detected</span>
+          <span id="feedbackLabel" class="status-label"></span>
+        </div>
+      </div>
+
+      <div class="video-container">
+        <img
+          id="videoFeed"
+          src="{{ url_for('video_feed') }}"
+          alt="Video Feed"
+          onerror="this.src='{{ url_for('static', filename='img/placeholder.jpg') }}';"
+          style="max-width: 100%; max-height: 100%"
+        />
+        <div id="videoStatus" class="video-status">Connecting to camera...</div>
+      </div>
+
+      <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+          <li>Select an exercise type from the dropdown menu</li>
+          <li>Click 'Start' to begin monitoring</li>
+          <li>Position yourself so your body is visible in the camera</li>
+          <li>For Hand Raise: Raise your arm straight up</li>
+          <li>For Hand Curl: Perform bicep curls with proper form</li>
+        </ol>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
